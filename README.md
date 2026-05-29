@@ -1,1 +1,1 @@
-# My-AI-Skills
+# My AI Global skills
