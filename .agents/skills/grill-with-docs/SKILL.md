@@ -17,16 +17,13 @@ If a question can be answered by exploring the codebase, explore the codebase in
 
 ## Setup (do this BEFORE the first question)
 
-1. **Decide the capture folder based on session type:**
-   - **Design session** (planning a feature, system, or anything you'll ship) → `<project-root>/.grill-with-docs-designs/{YYYY-MM-DD}-{topic-slug}.md`
-   - **Non-design session** (sharpening terminology, updating CONTEXT.md / ADRs, exploring concepts) → `<project-root>/.scratch/grill-with-docs-notes/{YYYY-MM-DD}-{topic-slug}.md`
-   - Why the split: designs are durable artifacts (they may feed into PRDs or ADRs, get linked from issues), so they live at the top level alongside `docs/adr/`. Notes are throwaway thinking, so they live in `.scratch/` with other disposable AI working files.
-   - Infer from the user's opening prompt. If genuinely unclear, default to `.scratch/grill-with-docs-notes/` — you can move the file later if it turns into a design session.
+1. **Each grilling session gets its own folder under `<project-root>/.scratch/grill-with-docs/{YYYY-MM-DD}-{topic-slug}/`.** Inside that folder, the markdown capture file is always `notes.md` — the raw Q&A audit trail. So the full path is `<project-root>/.scratch/grill-with-docs/{YYYY-MM-DD}-{topic-slug}/notes.md`.
    - **Always anchor paths to the project root**, not the current working directory. Find the root with `git rev-parse --show-toplevel` (or fall back to the highest folder containing a project marker like `package.json`, `pyproject.toml`, `Cargo.toml`, `.git/`, etc. if not in a git repo).
-   - Create the folder if it doesn't exist. Polished outputs (CONTEXT.md updates, ADRs) land in their own files regardless — the capture file is the raw audit trail.
+   - Create the session folder if it doesn't exist. Polished outputs (CONTEXT.md updates, ADRs) land in their own files outside the session folder — the capture file is the raw audit trail.
    - Get today's date with `date +%F` (Bash) if you don't already know it.
-   - Note: `.scratch/` is also used by the local-markdown issue tracker convention, where issues live at `.scratch/<feature-slug>/`. The `grill-with-docs-notes/` subfolder name is distinct enough that it won't collide with feature slugs.
-2. **Create the file immediately** with a header: title, date, the goal of the session, and an empty "Open flags" section.
+   - Note: `.scratch/` is also used by the local-markdown issue tracker convention, where issues live at `.scratch/<feature-slug>/`. The `grill-with-docs/` subfolder name is distinct enough that it won't collide with feature slugs.
+   - A sibling `designs/` subfolder inside the session folder (`<project-root>/.scratch/grill-with-docs/{YYYY-MM-DD}-{topic-slug}/designs/`) is reserved for HTML visual mockups only — never write markdown there. It's created lazily by the visual companion (see below), and only when the session actually has frontend/UI/visual decisions to make.
+2. **Create the capture file immediately** with a header: title, date, the goal of the session, and an empty "Open flags" section.
 3. **Tell the user where you're saving**, in one line. Then ask Q1.
 
 ## The checkpoint rule (non-negotiable)
@@ -106,9 +103,11 @@ If a `CONTEXT-MAP.md` exists at the root, the repo has multiple contexts. The ma
 
 Create files lazily — only when you have something to write. If no `CONTEXT.md` exists, create one when the first term is resolved. If no `docs/adr/` exists, create it when the first ADR is needed.
 
-## Visual companion (for frontend/UI questions)
+## Visual companion (frontend/UI/visual sessions only)
 
-When a question involves UI layout, component design, navigation, or any visual/spatial decision, create an HTML prototype so the user can **see** the options instead of reading about them. Read [VISUAL-COMPANION.md](./VISUAL-COMPANION.md) for the full guide — it covers when to show vs. stay in text, how to write prototypes, the CSS toolkit, and design tips.
+**Hard skip rule:** If the session has no frontend/UI/visual surface — backend work, domain modeling, terminology sharpening, ADR-only discussions, infrastructure, data pipelines — do NOT offer or mention the visual companion at all. Stay in text the entire session, and do not create the `designs/` subfolder.
+
+Only when the session genuinely involves UI layout, component design, navigation, or visual/spatial decisions: create HTML prototypes in `<project-root>/.scratch/grill-with-docs/{YYYY-MM-DD}-{topic-slug}/designs/` so the user can **see** the options instead of reading about them. That folder holds HTML mockups only — never markdown. Read [VISUAL-COMPANION.md](./VISUAL-COMPANION.md) for the full guide — it covers when to show vs. stay in text, how to write prototypes, the CSS toolkit, and design tips.
 
 ## During the session
 
