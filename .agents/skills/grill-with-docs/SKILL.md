@@ -18,11 +18,14 @@ If a question can be answered by exploring the codebase, explore the codebase in
 ## Setup (do this BEFORE the first question)
 
 1. **Decide the capture folder based on session type:**
-   - **Design session** (planning a feature, system, or anything you'll ship) → `grill-with-docs-designs/{YYYY-MM-DD}-{topic-slug}.md`
-   - **Non-design session** (sharpening terminology, updating CONTEXT.md / ADRs, exploring concepts) → `grill-with-docs-notes/{YYYY-MM-DD}-{topic-slug}.md`
-   - Infer from the user's opening prompt. If genuinely unclear, default to `grill-with-docs-notes/` — you can move the file later if it turns into a design session.
+   - **Design session** (planning a feature, system, or anything you'll ship) → `<project-root>/grill-with-docs-designs/{YYYY-MM-DD}-{topic-slug}.md`
+   - **Non-design session** (sharpening terminology, updating CONTEXT.md / ADRs, exploring concepts) → `<project-root>/.scratch/grill-with-docs-notes/{YYYY-MM-DD}-{topic-slug}.md`
+   - Why the split: designs are durable artifacts (they may feed into PRDs or ADRs, get linked from issues), so they live at the top level alongside `docs/adr/`. Notes are throwaway thinking, so they live in `.scratch/` with other disposable AI working files.
+   - Infer from the user's opening prompt. If genuinely unclear, default to `.scratch/grill-with-docs-notes/` — you can move the file later if it turns into a design session.
+   - **Always anchor paths to the project root**, not the current working directory. Find the root with `git rev-parse --show-toplevel` (or fall back to the highest folder containing a project marker like `package.json`, `pyproject.toml`, `Cargo.toml`, `.git/`, etc. if not in a git repo).
    - Create the folder if it doesn't exist. Polished outputs (CONTEXT.md updates, ADRs) land in their own files regardless — the capture file is the raw audit trail.
    - Get today's date with `date +%F` (Bash) if you don't already know it.
+   - Note: `.scratch/` is also used by the local-markdown issue tracker convention, where issues live at `.scratch/<feature-slug>/`. The `grill-with-docs-notes/` subfolder name is distinct enough that it won't collide with feature slugs.
 2. **Create the file immediately** with a header: title, date, the goal of the session, and an empty "Open flags" section.
 3. **Tell the user where you're saving**, in one line. Then ask Q1.
 
