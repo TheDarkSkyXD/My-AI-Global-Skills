@@ -39,12 +39,13 @@ Before implementing:
 - Never assume your changes simply work, always test!
 - If the project does not have any testing tools, scripts, MCP tools, skills, etc. available for testing, ask the user whether testing should be skipped.
 
-## ISSUE COMPLETION
+## ISSUE WORKFLOW
 
-- After finishing work on any issue, ALWAYS run the `/tdd` skill to verify your changes with tests.
+- BEFORE writing any tests or implementation code, invoke the `/tdd` skill to drive the work test-first (red → green → refactor, one vertical slice at a time). Do not write tests in bulk up front or after the code is done.
+- Tests are written first, drive the implementation, and are green by construction by the time the issue is finished — `/tdd` is a start-of-work skill, not a post-hoc verification step.
 - All tests MUST pass with zero errors before you mark an issue as completed.
 - Do NOT move to the next issue until the current issue's tests are green.
-- If tests fail, fix the failures before marking the issue done.
+- If tests fail mid-cycle, get back to GREEN before refactoring or moving on.
 
 ## UI DESIGN
 
