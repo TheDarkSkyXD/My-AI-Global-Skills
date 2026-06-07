@@ -18,7 +18,7 @@ If a question can be answered by exploring the codebase, explore the codebase in
 ## Setup (do this BEFORE the first question)
 
 1. **Decide the capture folder based on session type:**
-   - **Design session** (planning a feature, system, or anything you'll ship) → `<project-root>/grill-with-docs-designs/{YYYY-MM-DD}-{topic-slug}.md`
+   - **Design session** (planning a feature, system, or anything you'll ship) → `<project-root>/.grill-with-docs-designs/{YYYY-MM-DD}-{topic-slug}.md`
    - **Non-design session** (sharpening terminology, updating CONTEXT.md / ADRs, exploring concepts) → `<project-root>/.scratch/grill-with-docs-notes/{YYYY-MM-DD}-{topic-slug}.md`
    - Why the split: designs are durable artifacts (they may feed into PRDs or ADRs, get linked from issues), so they live at the top level alongside `docs/adr/`. Notes are throwaway thinking, so they live in `.scratch/` with other disposable AI working files.
    - Infer from the user's opening prompt. If genuinely unclear, default to `.scratch/grill-with-docs-notes/` — you can move the file later if it turns into a design session.
