@@ -17,7 +17,11 @@ If a question can be answered by exploring the codebase, explore the codebase in
 
 ## Setup (do this BEFORE the first question)
 
-1. **Create the capture file** at `grill-with-docs-designs/{YYYY-MM-DD}-{topic-slug}.md` (create the `grill-with-docs-designs/` folder if it doesn't exist). Every grilling session lives here, regardless of which context it touches. Polished outputs (CONTEXT.md updates, ADRs) land in their own files — the capture file is the raw audit trail.
+1. **Decide the capture folder based on session type:**
+   - **Design session** (planning a feature, system, or anything you'll ship) → `grill-with-docs-designs/{YYYY-MM-DD}-{topic-slug}.md`
+   - **Non-design session** (sharpening terminology, updating CONTEXT.md / ADRs, exploring concepts) → `grill-with-docs-notes/{YYYY-MM-DD}-{topic-slug}.md`
+   - Infer from the user's opening prompt. If genuinely unclear, default to `grill-with-docs-notes/` — you can move the file later if it turns into a design session.
+   - Create the folder if it doesn't exist. Polished outputs (CONTEXT.md updates, ADRs) land in their own files regardless — the capture file is the raw audit trail.
    - Get today's date with `date +%F` (Bash) if you don't already know it.
 2. **Create the file immediately** with a header: title, date, the goal of the session, and an empty "Open flags" section.
 3. **Tell the user where you're saving**, in one line. Then ask Q1.
@@ -142,5 +146,6 @@ If any of the three is missing, skip the ADR. Use the format in [ADR-FORMAT.md](
 - Do a final read of the capture file for contradictions or gaps and reconcile them.
 - Verify CONTEXT.md and any new ADRs match the final state in the capture file (the log is the source of truth during the session).
 - Give the user a short recap: what's captured, what was added to CONTEXT.md / ADRs, what's still flagged, and the suggested next step.
+- If the session produced feature-shaped output (something the user wants to ship), recommend running `/to-prd` to turn the captured decisions into a PRD. Skip this if the session was purely about sharpening terminology or updating CONTEXT.md / ADRs.
 
 </supporting-info>
