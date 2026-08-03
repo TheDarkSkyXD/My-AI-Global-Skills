@@ -1,6 +1,6 @@
 ---
 name: Universal Application Architecture
-description: Design, review, and organize web, mobile, desktop, server, worker, CLI, and local-first code by responsibility and strict dependency direction.
+description: Use whenever the user asks where code belongs; how UI, API, transport, domain, capabilities, vendors, databases, web, mobile, desktop, server, worker, CLI, or local-first layers communicate; or requests architecture design, review, refactoring, dependency-boundary checks, or separation of business logic from delivery and infrastructure code.
 providers: [claude, codex]
 model: inherit
 store-description: A universal responsibility-based architecture workflow covering UI, transport, domain, capabilities, vendor adapters, persistence, offline synchronization, and cross-platform boundaries.
