@@ -21,6 +21,22 @@ For JavaScript and TypeScript projects, enforce architecture in layers:
 
 Do not rely only on naming conventions or code-review memory.
 
+## Folder implementation contract
+
+Whenever this skill creates or reorganizes JavaScript/TypeScript architecture folders, implement the corresponding ESLint boundaries during the same task. Do not stop after moving files and leave enforcement as a recommendation or TODO.
+
+The completed implementation must:
+
+1. Map every new or changed architecture folder to an ESLint boundary element.
+2. Encode allowed source-import directions and deny forbidden shortcuts.
+3. Protect adapter-only SDKs and package public APIs.
+4. Preserve necessary composition-root, test, generated-code, and migration exceptions narrowly.
+5. Put the rules in the repository's normal lint path.
+6. Run the repository lint command and relevant type checks or tests.
+7. Prove at least one allowed dependency passes and one representative forbidden dependency fails, without leaving intentionally broken source behind.
+
+Skip the configuration change only when the user explicitly declines ESLint, the affected implementation contains no JavaScript/TypeScript, or a concrete repository constraint makes ESLint unusable. Report the exact reason rather than silently omitting enforcement.
+
 Current authoritative references:
 
 - https://github.com/javierbrea/eslint-plugin-boundaries
